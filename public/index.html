@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">    
+  <link rel="stylesheet" href="css/chessboard-0.3.0.min.css" />   
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="js/chess.min.js"></script>
+    <script src="js/chessboard-0.3.0.min.js"></script>
+	  <link rel="stylesheet" href="css/style.css" />
+    <title>Elometer</title>
+  </head>
+  <body>
+      <div class="col-sm-7 col-md-6" id="clockAndBoard">		
+        <span class="h3" id="time1">0:10:00</span>
+        <div id="board"></div>
+        <span class="h3" id="time2">0:10:00</span>
+      </div>
+      <div class="col-sm-5 col-md-6">   
+        <form class="form-horizontal" id="iplay">          
+          <div class="form-group">
+            <label for="color" class="control-label col-xs-4 col-sm-6 col-md-4">I play</label>
+            <div class="col-xs-4 col-sm-6 col-md-4">
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active" id="color-white"><input type="radio" name="color">White</label>
+                <label class="btn btn-primary" id="color-black"><input type="radio" name="color">Black</label>
+              </div>
+            </div>
+          </div>	 
+          
+          <div class="form-group">
+            <label for="color" class="control-label col-xs-4 col-sm-6 col-md-4"></label>
+            <div class="col-xs-4 col-sm-6 col-md-4">
+              <button type="button" class="btn btn-primary" onclick="newGame()">New Game</button>
+            </div>
+          </div>
+		  
+		  <div class="form-group">
+             <label for="resign" id = "resignLabel" value = "" class="control-label col-xs-4 col-sm-6 col-md-4"> </label>
+            <div class="col-xs-4 col-sm-6 col-md-4">
+              <button type="button" id = "resignBtn" value = ""
+			  class="btn btn-primary" disabled onclick="resign()">Resign</button>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="color" class="control-label col-xs-4 col-sm-6 col-md-4">Promote to</label>
+            <div class="col-xs-4 col-sm-6 col-md-4">
+              <select id=promote>
+                <option value=q selected>Queen</option>
+                <option value=r>Rook</option>
+                <option value=b>Bishop</option>
+                <option value=n>Knight</option>
+              </select>
+            </div>
+          </div>
+        </form>
+		<h3>Moves:</h3>
+        <div id="pgn"></div>
+    </div>
+    <script src="game.js"></script>
+    <script>
+      var newGame = function (){};
+      
+      function init()
+      {
+        var game = game();
+    
+        newGame = function newGame() {	
+            game.reset();         
+			game.setPlayerColor($('#color-white').hasClass('active') ? 'white' : 'black');			
+			var baseTime = 600;
+			var inc = 0;
+			game.setTime(baseTime, inc);							
+            game.start();
+        } 
+
+		resign = function resign(){
+			game.resign();
+		}
+    
+        newGame();
+      }    
+     
+        document.addEventListener("DOMContentLoaded", init);      
+    </script>
+  </body>
+</html>
