@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 app.use(express.static("public"));
+app.use(express.static("node_modules/stockfish/src"));
 
 const jsonParser = express.json();
   
@@ -160,4 +161,4 @@ let port = 8080;
 app.listen(port);
 console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
 
-var stockfish = require("./public/stockfish.js");
+var stockfish = require("./node_modules/stockfish/src/stockfish.js");

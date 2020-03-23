@@ -1,4 +1,4 @@
-function game(options) {
+function play(options) {
     options = options || {}
     var game = new Chess();
     var board;

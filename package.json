@@ -1,11 +1,11 @@
 {
   "name": "elometer",
   "version": "1.0.0",
-   "scripts" : {
-	"start" : "node server.js",
-  }
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
-	"stockfish": "^10.0.2",
+    "stockfish": "^10.0.2",
     "express": "^4.16.4"
   }
 }
