@@ -11,4 +11,4 @@ Make sure you have node and npm installed. Clone the repo, and run `npm install`
 - <a href="https://https://github.com/nmrugg/stockfish.js">nmrugg</a>
 
 ### License
-MIT (see <a href="https://https://github.com/dendiod/elometer/blob/master/LICENSE">license.txt</a>)
+MIT (see <a href="https://https://raw.githubusercontent.com/dendiod/elometer/blob/master/LICENSE">license.txt</a>)
