@@ -92,8 +92,7 @@ function play(options) {
 	function getElo(startIndex){
 		let curHistory = game.history({verbose: true});
 		let elo = 0;
-		for(let i = startIndex; i < evals.length; i+=2){ 
-		
+		for(let i = startIndex; i < evals.length; i+=2){ 		
 			let curMove = curHistory[i-1];
 			let move = curMove.from + curMove.to;			
 			if(curMove.promotion)
@@ -205,7 +204,7 @@ function play(options) {
 		}
         if(turn != playerColor) {
 			isEngineRunning = true;
-            let user = JSON.stringify({playerColor: playerColor,
+            let user = JSON.stringify({id: id, playerColor: playerColor,
 			islastEval: islastEval, 
 			history: curHistory});			
             let request = new XMLHttpRequest();
@@ -221,6 +220,7 @@ function play(options) {
 				 if(receivedUser.scores[1])
 					 evals.push(receivedUser.scores[1]);
 				 isEngineRunning = false;
+				 islastEval = false;
 				 prepareMove();
              });
              request.send(user);			
