@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;	
+}
+
+#clockAndBoard{
+	width: 100%;
+}
+
+#board{
+	touch-action: none;
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {     
+    body{
+		flex-direction: row;
+	}
+	#clockAndBoard{
+	width: 90vh;
+	}
+	#iplay{
+	margin-top:50px;
+	}
+}
+@media screen and (min-device-width: 769px){
+	body{
+		flex-direction: row;
+	}
+	#clockAndBoard{
+	width:60%;
+	margin-left:25%;
+	}
+	#iplay{
+	margin-top:50px;
+	}
+}
+
