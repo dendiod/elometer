@@ -8,4 +8,4 @@ Make sure you have node and npm installed. Clone the repo, and run `npm install`
 - fix layout after mobile device rotation
 
 ### Thanks
-- <a href="http://https://github.com/nmrugg/stockfish.js">nmrugg</a>
+- <a href="github.com/nmrugg/stockfish.js">nmrugg</a>
