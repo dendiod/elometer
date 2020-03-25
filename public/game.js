@@ -89,7 +89,7 @@ function play(options) {
         clockTick();
     }    
 	
-	function getElo(startIndex){
+	function getBestPlayedCoef(startIndex){
 		let curHistory = game.history({verbose: true});
 		let elo = 0;
 		for(let i = startIndex; i < evals.length; i+=2){ 		
@@ -117,7 +117,7 @@ function play(options) {
 	
 	 function finishGame(){		         
 		let bestPlayedCoef;
-		bestPlayedCoef = playerColor == 'white' ? getElo(1) : getElo(2);
+		bestPlayedCoef = playerColor == 'white' ? getBestPlayedCoef(1) : getBestPlayedCoef(2);
 		bestPlayedCoef += 10;
 		
 		let output = "";
