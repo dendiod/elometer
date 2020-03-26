@@ -13,6 +13,7 @@ let islastEvals = [];
 let histories = [];
 let bestFor1Move = [];
 let goodFor1Move = [];
+let bestForPlayer = [];
 let scores = [];
 app.post("/id", jsonParser, (request, response) => {
 	stockfishes.push(stockfish());	
@@ -22,6 +23,7 @@ app.post("/id", jsonParser, (request, response) => {
 	histories.push({});
 	bestFor1Move.push(new Set());
 	goodFor1Move.push(new Set());
+	bestForPlayer.push('');
 	scores.push([]);
 	uciCmd('setoption name Contempt value 0', id);
 let max_err, err_prob, skill = 0;
@@ -51,6 +53,7 @@ app.post("/user", jsonParser, (request, response) => {
 	 bestFor1Move[id].clear();
 	 goodFor1Move[id].clear();
 	 scores[id] = [];
+	 bestForPlayer[id] = '';
     runStockfish(histories[id], islastEvals[id], id);
 	
 	stockfishes[id].onmessage = function(event) {
@@ -74,13 +77,19 @@ app.post("/user", jsonParser, (request, response) => {
 					move += match[4];
 				goodFor1Move[id].add(move);
 			}
-			if(islastEvals[id] && match && parseInt(match[1]) >= 14){
+			else if(islastEvals[id] && match && parseInt(match[1]) >= 14){
 				let move = match[2] + match[3];
 				if(match[4])
 					move += match[4];
 				bestFor1Move[id].add(move);
 			}
-            if (match = line.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/)){	
+			else if(!islastEvals[id] && match && parseInt(match[1]) == 15){
+				let move = match[2] + match[3];
+				if(match[4])
+					move += match[4];
+				bestForPlayer[id] = move;
+			}
+            else if (match = line.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/)){	
 				scores[id].push(getScore(engineStatuses[id].score, playerColors[id]));
 			      if(islastEvals[id]){	
 					  islastEvals[id] = false;				  
@@ -93,7 +102,7 @@ app.post("/user", jsonParser, (request, response) => {
 			          let move = playerAdvantage > 1 ? bestFor1Move[id].getByIndex(getRandomInt(bestFor1Move[id].size)) : 
 					      goodFor1Move[id].getByIndex(getRandomInt(goodFor1Move[id].size)); 
 						 
-					  response.json({"move": move, "bestmove" : bestFor1Move[id].getByIndex(bestFor1Move[id].size-1),
+					  response.json({"move": move, "bestmove" : bestForPlayer,
 					  "scores" : scores[id]});
 					  
 			      }
