@@ -91,7 +91,7 @@ function play(options) {
 	
 	function getBestPlayedCoef(startIndex){
 		let curHistory = game.history({verbose: true});
-		let elo = 0;
+		let bestPlayedCoef = 0;
 		for(let i = startIndex; i < evals.length; i+=2){ 		
 			let curMove = curHistory[i-1];
 			let move = curMove.from + curMove.to;			
@@ -99,10 +99,10 @@ function play(options) {
 				move +=  curMove.promotion;
 			if(bestmoves[(i-1) / 2] != move){	
 				console.log(evals[i-1] + ' ' + evals[i] + ' ' + i);			
-				elo += evals[i] - evals[i-1];			
+				bestPlayedCoef += evals[i] - evals[i-1];			
 			}
 		}
-		return elo.toPrecision(3);
+		return bestPlayedCoef.toPrecision(3) + 10;
 	}		
 	
 	function checkAdvantage(){
@@ -116,10 +116,7 @@ function play(options) {
 	
 	
 	 function finishGame(){		         
-		let bestPlayedCoef;
-		bestPlayedCoef = playerColor == 'white' ? getBestPlayedCoef(1) : getBestPlayedCoef(2);
-		bestPlayedCoef += 10;
-		
+		let bestPlayedCoef = playerColor == 'white' ? getBestPlayedCoef(1) : getBestPlayedCoef(2);		
 		let output = "";
 		let advantageCoef;
 		if(game.game_over()){
