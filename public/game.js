@@ -205,7 +205,11 @@ function play(options) {
 			islastEval: islastEval, 
 			history: curHistory});			
             let request = new XMLHttpRequest();
-             request.open("POST", "/user", true);   
+             request.open("POST", "/user", true); 
+	     request.onerror = function () {
+		 alert("Connection with server failed");
+		 return;
+	     };	
              request.setRequestHeader("Content-Type", "application/json");
              request.addEventListener("load", function () {
                  let receivedUser = JSON.parse(request.response);
