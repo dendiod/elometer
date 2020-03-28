@@ -207,6 +207,7 @@ function play(options) {
             let request = new XMLHttpRequest();
              request.open("POST", "/user", true); 
 	     request.onerror = function () {
+		 stopClock();   
 		 alert("Connection with server failed");
 		 return;
 	     };	
