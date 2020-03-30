@@ -1,5 +1,5 @@
 ### elometer
-Determination elo using neural network and Stockfish in 10 minutes blitz
+Elo determination using neural network and Stockfish in 10 minutes blitz
 
 ### Getting started
 Make sure you have node and npm installed. Clone the repo, and run `npm install`, then `npm start`
