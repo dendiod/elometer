@@ -176,6 +176,8 @@ function play(options) {
 		// using coefs from neural network
 		let x = 0.0108 * bestPlayedCoef + 0.1196 * movesCoef + 0.0073 * advantageCoef;
 		let elo = parseInt(5000.0 / (1 + Math.exp(-x))) - 123;
+		if(playerColor != 'white')
+			elo += 30;
 		output += '\nYour elo ';
 		output += elo < 900 ? 'is less than 900' : elo;
 		document.getElementById("resignBtn").disabled = true;
