@@ -10,8 +10,8 @@ Make sure you have node.js installed. Clone the repo, and run `npm install`, the
 ### Todo (Help wanted)
 - fix layout after mobile device changes orientation
 
-### License
-MIT
-
 ### Thanks
 - <a href="https://github.com/nmrugg/stockfish.js">nmrugg</a>
+
+### License
+MIT
